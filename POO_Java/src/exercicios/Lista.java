@@ -39,7 +39,6 @@ public class Lista {
 		System.out.println("Lista de pessoas com J:" + result);
 
 		
-		
 		// Filtrar primeira pessoa
 		String name = nomeLista.stream().filter(x -> x.charAt(0) == 'J').findFirst().orElse(null);
 		System.out.println("Primeira pessoa com J:" + name);
