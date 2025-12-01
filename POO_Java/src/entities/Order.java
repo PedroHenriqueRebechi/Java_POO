@@ -1,36 +1,33 @@
 package entities;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import entities.enums.OrderStatus;
 
 public class Order {
-	private Integer id;
-	private Date moment;
+	private LocalDateTime moment;
 	private OrderStatus status;
+	
+	private Client client;
+	private List<OrderItem> orderItems = new ArrayList<>();
 	
 	public Order() {
 	}
 
-	public Order(Integer id, Date moment, OrderStatus status) {
-		this.id = id;
+	public Order(LocalDateTime moment, OrderStatus status, Client client) {
 		this.moment = moment;
 		this.status = status;
+		this.client = client;
 	}
 
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Date getMoment() {
+	public LocalDateTime getMoment() {
 		return moment;
 	}
 
-	public void setMoment(Date moment) {
+	public void setMoment(LocalDateTime moment) {
 		this.moment = moment;
 	}
 
@@ -42,10 +39,35 @@ public class Order {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", moment=" + moment + ", status=" + status + "]";
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public List<OrderItem> getOrderItens() {
+		return orderItems;
+	}
+
+	
+	public void addItem(OrderItem item) {
+		orderItems.add(item);
+	}
+
+	public void removeItem(OrderItem item) {
+		orderItems.remove(item);
 	}
 	
-	
+	public Double total() {
+		double sum = 0;
+		
+		for (OrderItem c : orderItems) {
+			sum += c.subTotal();
+		}
+		
+		return sum;
+	}
+
 }
