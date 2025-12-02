@@ -15,6 +15,11 @@ public class Order {
 	
 	public Order() {
 	}
+	
+	public Order(LocalDateTime moment, OrderStatus status) {
+		this.moment = moment;
+		this.status = status;
+	}
 
 	public Order(LocalDateTime moment, OrderStatus status, Client client) {
 		this.moment = moment;
